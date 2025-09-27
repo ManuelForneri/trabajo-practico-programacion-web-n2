@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TechStore - Tu Tienda de Tecnología</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Header con navegación -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="logo">
+          <h1>TechStore</h1>
+        </div>
+        
+        <!-- Botón del menú hamburguesa -->
+        <button class="hamburger" aria-label="Menú">
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
+        
+        <!-- Menú de navegación -->
+        <ul class="nav-menu">
+          <li><a href="#inicio" class="nav-link">Inicio</a></li>
+          <li><a href="#productos" class="nav-link">Productos</a></li>
+          <li><a href="#contacto" class="nav-link">Contacto</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Sección Hero -->
+    <section id="inicio" class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title">Descubre el Futuro de la Tecnología</h1>
+        <p class="hero-subtitle">
+          Los mejores productos tecnológicos al mejor precio
+        </p>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number">500+</span>
+            <span class="stat-label">Productos</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">50k+</span>
+            <span class="stat-label">Clientes Satisfechos</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">24/7</span>
+            <span class="stat-label">Soporte</span>
+          </div>
+        </div>
+        <a href="#productos" class="hero-cta">Ver Productos</a>
+      </div>
+    </section>
+
+    <!-- Sección principal -->
+    <main>
+      <!-- Sección de productos -->
+      <section id="productos" class="services-section">
+        <h2>Nuestros Productos Estrella</h2>
+        <div class="services-container">
+          <div class="service-card">
+            <img
+              src="img/notebook-gamer.webp"
+              alt="Notebook Gamer"
+              class="service-image"
+            />
+            <h3>Notebook Gamer</h3>
+            <p class="service-description">
+              Notebook de alto rendimiento para gaming y trabajo profesional.
+              Procesador de última generación y gráficos dedicados.
+            </p>
+            <p class="service-price">$1200</p>
+          </div>
+
+          <div class="service-card">
+            <img
+              src="img/Pc-gamer-completa.webp"
+              alt="PC Gaming Completa"
+              class="service-image"
+            />
+            <h3>PC Gaming Completa</h3>
+            <p class="service-description">
+              Computadora de escritorio optimizada para juegos con componentes
+              de alta gama y refrigeración avanzada.
+            </p>
+            <p class="service-price">$2500</p>
+          </div>
+
+          <div class="service-card">
+            <img
+              src="img/smartphone.webp"
+              alt="Smartphone Premium"
+              class="service-image"
+            />
+            <h3>Smartphone Premium</h3>
+            <p class="service-description">
+              Celular de última generación con cámara profesional, batería de
+              larga duración y pantalla AMOLED.
+            </p>
+            <p class="service-price">$1800</p>
+          </div>
+
+          <div class="service-card">
+            <img
+              src="img/parlante.webp"
+              alt="Parlantes Bluetooth"
+              class="service-image"
+            />
+            <h3>Parlantes Bluetooth</h3>
+            <p class="service-description">
+              Sistema de audio inalámbrico de alta calidad con conectividad
+              Bluetooth 5.0 y batería de 20 horas.
+            </p>
+            <p class="service-price">$300</p>
+          </div>
+        </div>
+
+        <div class="total-section">
+          <h3>
+            Precio Total de Todos los Productos:
+            <span id="total-price">$5800</span>
+          </h3>
+        </div>
+      </section>
+
+      <!-- Formulario de contacto -->
+      <section id="contacto" class="contact-section">
+        <h2>¿Listo para Comprar?</h2>
+        <p class="contact-intro">
+          Contáctanos y te ayudaremos a elegir el producto perfecto para ti
+        </p>
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              required
+              placeholder="Tu nombre completo"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="tu.email@ejemplo.com"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="telefono">Teléfono:</label>
+            <input
+              type="tel"
+              id="telefono"
+              name="telefono"
+              required
+              placeholder="+54 11 1234-5678"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="mensaje">Mensaje:</label>
+            <textarea
+              id="mensaje"
+              name="mensaje"
+              rows="5"
+              required
+              placeholder="Cuéntanos qué producto te interesa..."
+            ></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Enviar Consulta</button>
+        </form>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>TechStore</h4>
+          <p>
+            Tu tienda de confianza para productos tecnológicos de vanguardia.
+            Calidad garantizada y precios competitivos.
+          </p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contacto</h4>
+          <p>Email: info@techstore.com</p>
+          <p>Teléfono: +54 11 5555-6677</p>
+          <p>Dirección: Av. Tecnología 123, Buenos Aires</p>
+          <p>Horario: Lun - Vie: 9:00 - 20:00</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Productos</h4>
+          <ul>
+            <li>Notebooks</li>
+            <li>PC Gaming</li>
+            <li>Smartphones</li>
+            <li>Audio</li>
+            <li>Accesorios</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          &copy; 2025 TechStore. Todos los derechos reservados. | Desarrollado
+          con ❤️ para la innovación tecnológica
+        </p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
