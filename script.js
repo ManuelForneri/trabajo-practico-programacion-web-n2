@@ -1,119 +1,106 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Inicializar animaciones
-    initializeAnimations();
+document.addEventListener("DOMContentLoaded", function () {
+  initializeAnimations();
 
-    // Configurar formulario
-    setupContactForm();
+  setupContactForm();
 
-    // Agregar efectos de scroll
-    setupScrollEffects();
+  setupScrollEffects();
 
-    // Configurar contador animado
-    setupAnimatedCounters();
+  setupAnimatedCounters();
 
-    // Inicializar menú hamburguesa
-    setupHamburgerMenu();
+  setupHamburgerMenu();
 });
 
-// Función para configurar el menú hamburguesa
 function setupHamburgerMenu() {
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-    const navLinks = document.querySelectorAll('.nav-link');
-    const body = document.body;
+  const hamburger = document.querySelector(".hamburger");
+  const navMenu = document.querySelector(".nav-menu");
+  const navLinks = document.querySelectorAll(".nav-link");
+  const body = document.body;
 
-    // Configurar índices para las animaciones
-    navLinks.forEach((link, index) => {
-        link.parentElement.style.setProperty('--i', index + 1);
+  navLinks.forEach((link, index) => {
+    link.parentElement.style.setProperty("--i", index + 1);
+  });
+
+  hamburger.addEventListener("click", function (e) {
+    e.stopPropagation();
+    const isActive = this.classList.contains("active");
+
+    this.classList.toggle("active");
+    navMenu.classList.toggle("active");
+
+    if (!isActive) {
+      body.style.overflow = "hidden";
+      void navMenu.offsetWidth;
+      navMenu.style.transform = "translateX(0)";
+      navMenu.style.opacity = "1";
+    } else {
+      body.style.overflow = "";
+      navMenu.style.transform = "translateX(100%)";
+      navMenu.style.opacity = "0";
+    }
+  });
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      if (window.innerWidth <= 992) {
+        hamburger.classList.remove("active");
+        navMenu.classList.remove("active");
+        body.style.overflow = "";
+        navMenu.style.transform = "translateX(100%)";
+        navMenu.style.opacity = "0";
+      }
     });
+  });
 
-    // Alternar menú al hacer clic en el botón hamburguesa
-    hamburger.addEventListener('click', function(e) {
-        e.stopPropagation();
-        const isActive = this.classList.contains('active');
-        
-        this.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        
-        if (!isActive) {
-            body.style.overflow = 'hidden';
-            // Forzar reflow para reiniciar la animación
-            void navMenu.offsetWidth;
-            navMenu.style.transform = 'translateX(0)';
-            navMenu.style.opacity = '1';
-        } else {
-            body.style.overflow = '';
-            navMenu.style.transform = 'translateX(100%)';
-            navMenu.style.opacity = '0';
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".navbar") && navMenu.classList.contains("active")) {
+      hamburger.classList.remove("active");
+      navMenu.classList.remove("active");
+      body.style.overflow = "";
+      navMenu.style.transform = "translateX(100%)";
+      navMenu.style.opacity = "0";
+    }
+  });
+
+  let lastScroll = 0;
+  let ticking = false;
+
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const currentScroll = window.pageYOffset;
+
+        if (
+          Math.abs(currentScroll - lastScroll) > 30 &&
+          navMenu.classList.contains("active")
+        ) {
+          hamburger.classList.remove("active");
+          navMenu.classList.remove("active");
+          body.style.overflow = "";
+          navMenu.style.transform = "translateX(100%)";
+          navMenu.style.opacity = "0";
         }
-    });
 
-    // Cerrar menú al hacer clic en un enlace
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            // Solo cerrar si estamos en móvil
-            if (window.innerWidth <= 992) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                body.style.overflow = '';
-                navMenu.style.transform = 'translateX(100%)';
-                navMenu.style.opacity = '0';
-            }
-        });
-    });
+        lastScroll = currentScroll;
+        ticking = false;
+      });
 
-    // Cerrar menú al hacer clic fuera de él
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('.navbar') && navMenu.classList.contains('active')) {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            body.style.overflow = '';
-            navMenu.style.transform = 'translateX(100%)';
-            navMenu.style.opacity = '0';
-        }
-    });
+      ticking = true;
+    }
+  });
 
-    // Cerrar menú al hacer scroll
-    let lastScroll = 0;
-    let ticking = false;
-    
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            window.requestAnimationFrame(() => {
-                const currentScroll = window.pageYOffset;
-                
-                if (Math.abs(currentScroll - lastScroll) > 30 && 
-                    navMenu.classList.contains('active')) {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                    body.style.overflow = '';
-                    navMenu.style.transform = 'translateX(100%)';
-                    navMenu.style.opacity = '0';
-                }
-                
-                lastScroll = currentScroll;
-                ticking = false;
-            });
-            
-            ticking = true;
-        }
-    });
-
-    // Manejar cambios de tamaño de ventana
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-            if (window.innerWidth > 992) {
-                // Restaurar estilos en desktop
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                body.style.overflow = '';
-                navMenu.style.transform = '';
-                navMenu.style.opacity = '';
-            }
-        }, 250);
-    });
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (window.innerWidth > 992) {
+        hamburger.classList.remove("active");
+        navMenu.classList.remove("active");
+        body.style.overflow = "";
+        navMenu.style.transform = "";
+        navMenu.style.opacity = "";
+      }
+    }, 250);
+  });
 }
 
 function initializeAnimations() {
